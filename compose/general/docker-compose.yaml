@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+
+  redis:
+    image: bitnami/redis:latest
+    stdin_open: true
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    # tty: true
+    ports:
+      - 6379:6379
+    
+  # https://github.com/maildev/maildev
+  maildev:
+    image: maildev/maildev
+    environment:
+      MAILDEV_WEB_USER: user
+      MAILDEV_WEB_PASS: user
+      MAILDEV_INCOMING_USER: income
+      MAILDEV_INCOMING_PASS: income
+    ports:
+      - 1080:1080
+      - 1025:1025
+      
+  kafkagui:
+    image: consdata/kouncil:latest
+    restart: always
+    environment:
+      bootstrapServers: '172.16.20.134:9092'
+    ports:
+      - 8080:8080
