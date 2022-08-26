@@ -1,0 +1,2 @@
+https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/1.9.0.Final/debezium-connector-mysql-1.9.0.Final-plugin.tar.gz
+https://github.com/holmofy/debezium-datetime-converter/releases/download/v1.4.0.Final/debezium-extension-1.4.0.Final.jar
